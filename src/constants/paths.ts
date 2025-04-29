@@ -3,22 +3,22 @@ const paths = {
 		return "/";
 	},
 	login: () => {
-		return "/login";
+		return "/auth/login";
 	},
 	register: () => {
-		return "/register";
+		return "/auth/register";
 	},
 	passwordReset() {
-		return "/reset-password";
+		return "/auth/reset-password";
 	},
 	newPassword() {
-		return "/new-password";
+		return "/auth/new-password";
 	},
 	newVerification() {
-		return "/new-verification";
+		return "/auth/new-verification";
 	},
 	authError: () => {
-		return "/error";
+		return "/auth/error";
 	},
 } satisfies Record<string, () => string>;
 

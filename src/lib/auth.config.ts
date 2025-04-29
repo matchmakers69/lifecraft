@@ -4,7 +4,7 @@ import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
 
 import { loginSchema } from "@/domains/authentication/login/schema";
-import { getUserByEmail } from "@/domains/user/services";
+import { getUserByEmail } from "@/domains/eventsCalendar/services";
 
 const AUTH_GOOGLE_ID = process.env.AUTH_GOOGLE_ID;
 const AUTH_GOOGLE_SECRET = process.env.AUTH_GOOGLE_SECRET;

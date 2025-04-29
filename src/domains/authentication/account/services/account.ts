@@ -1,4 +1,4 @@
-import { db } from "@/lib";
+import { db } from "@/db";
 
 // File created when users use google or github to login
 export const getAccountByUserId = async (userId: string) => {
