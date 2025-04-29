@@ -2,7 +2,7 @@
 
 import { paths } from "@/constants";
 import * as auth from "@/lib/auth";
-import { t} from "@/shared/locales"
+import { t } from "@/shared/locales";
 
 export const logout = async () => {
 	try {
