@@ -1,27 +1,54 @@
 {
-  "name": "lifecraft",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.1"
-  },
-  "devDependencies": {
-    "typescript": "^5",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.1",
-    "@eslint/eslintrc": "^3"
-  }
+	"name": "lifecraft",
+	"version": "0.1.0",
+	"private": true,
+	"scripts": {
+		"dev": "next dev --turbopack",
+		"build": "next build",
+		"start": "next start",
+		"lint": "next lint",
+		"format": "prettier --write ."
+	},
+	"prisma": {
+		"seed": "ts-node -P tsconfig-seed.json -r tsconfig-paths/register --transpileOnly prisma/seed.ts"
+	},
+	"dependencies": {
+		"@auth/prisma-adapter": "^2.9.0",
+		"@prisma/client": "^6.7.0",
+		"@tanstack/react-query": "^5.74.9",
+		"@tanstack/react-query-devtools": "^5.74.9",
+		"@types/bcryptjs": "^2.4.6",
+		"axios": "^1.9.0",
+		"bcryptjs": "^3.0.2",
+		"class-variance-authority": "^0.7.1",
+		"clsx": "^2.1.1",
+		"date-fns": "^4.1.0",
+		"lucide-react": "^0.503.0",
+		"next": "15.3.1",
+		"next-auth": "^5.0.0-beta.27",
+		"react": "^19.0.0",
+		"react-dom": "^19.0.0",
+		"react-hook-form": "^7.56.1",
+		"react-hot-toast": "^2.5.2",
+		"remixicon": "^4.6.0",
+		"tailwind-merge": "^3.2.0",
+		"uuid": "^11.1.0",
+		"zod": "^3.24.3"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3",
+		"@tailwindcss/postcss": "^4",
+		"@types/node": "^20",
+		"@types/react": "^19",
+		"@types/react-dom": "^19",
+		"eslint": "^9",
+		"eslint-config-next": "15.3.1",
+		"eslint-config-prettier": "^10.1.2",
+		"eslint-plugin-prettier": "^5.2.6",
+		"prettier": "^3.5.3",
+		"prettier-plugin-tailwindcss": "^0.6.11",
+		"prisma": "^6.7.0",
+		"tailwindcss": "^4",
+		"typescript": "^5"
+	}
 }
