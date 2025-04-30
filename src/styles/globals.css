@@ -9,6 +9,42 @@
 	--medium-text: 500;
 	--semibold-text: 600;
 	--bold-text: 700;
+	--text-light: #e9e6df;
+	--dark-blue: #00cccc;
+}
+
+@theme {
+	--text-xs: 1.2rem;
+	--text-base: 1.4rem;
+	--text-sm: 1.6rem;
+	--text-md: 1.8rem;
+	--text-lg: 3rem;
+	--text-xl: 4rem;
+	--text-2xl: 6rem;
+
+	--color-dark-red: #e13404;
+	--color-text-light: #e9e6df;
+	--color-medium-grey: #cccccc;
+	--color-berry-blue: #4f86f7;
+	--color-text-grey: #a8a8a8;
+	--color-text-grey: #a8a8a8;
+	--color-black: #000;
+	--color-white: #fff;
+	--color-ring-dark: #2a3132;
+	--color-dark-blue: #00cccc;
+}
+
+@utility flex-center {
+	@apply flex justify-center items-center;
+}
+
+@layer components {
+	.container {
+		@apply px-[3rem] sm:px-[4rem] lg:px-[6rem];
+	}
+	.hero-auth {
+		background-image: url("/images/auth-icon.jpg");
+	}
 }
 
 * {
@@ -43,6 +79,9 @@ body {
 	font-size: 1.6rem;
 	line-height: 1.5;
 	font-family: var(--font-ibm);
+	font-weight: var(--regular-text);
+	background-color: var(--body);
+	color: var(--text-light);
 	-webkit-text-size-adjust: 100%;
 	-webkit-font-smoothing: antialiased;
 	text-rendering: optimizeLegibility;

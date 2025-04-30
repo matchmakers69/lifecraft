@@ -3,13 +3,10 @@ import { PrismaAdapter } from "@auth/prisma-adapter";
 
 import { db } from "../db";
 import { paths } from "@/constants";
-import { getUserById } from "@/domains/eventsCalendar/services";
+import { getAccountByUserId, getTwoFactorConfirmationByUserId, getUserById } from "@/domains/user/services";
 import authConfig from "./auth.config";
 import { UserRole } from "@prisma/client";
-import {
-	getAccountByUserId,
-	getTwoFactorConfirmationByUserId,
-} from "@/domains/authentication/account/services";
+
 
 export type ExtendedUser = DefaultSession["user"] & {
 	id: string;

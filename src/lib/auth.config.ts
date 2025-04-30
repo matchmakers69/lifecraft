@@ -3,8 +3,8 @@ import bcrypt from "bcryptjs";
 import Google from "next-auth/providers/google";
 import type { NextAuthConfig } from "next-auth";
 
-import { loginSchema } from "@/domains/authentication/login/schema";
-import { getUserByEmail } from "@/domains/eventsCalendar/services";
+import { loginSchema } from "@/domains/authentication/validationSchemas";
+import { getUserByEmail } from "@/domains/user/services";
 
 const AUTH_GOOGLE_ID = process.env.AUTH_GOOGLE_ID;
 const AUTH_GOOGLE_SECRET = process.env.AUTH_GOOGLE_SECRET;
