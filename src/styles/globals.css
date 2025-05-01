@@ -28,6 +28,7 @@
 	--color-berry-blue: #4f86f7;
 	--color-text-grey: #a8a8a8;
 	--color-text-grey: #a8a8a8;
+	--color-google: #4285f4;
 	--color-black: #000;
 	--color-white: #fff;
 	--color-ring-dark: #2a3132;
@@ -45,6 +46,64 @@
 	.hero-auth {
 		background-image: url("/images/auth-icon.jpg");
 	}
+	.google-button {
+		@apply w-full bg-google hover:bg-[#4285F4]/90 focus:ring-[#4285F4]/50;
+	}
+	.slogan-text {
+		font-family: var(--font-oswald);
+		@apply text-[2.4rem] font-bold leading-[1.2] mb-2 text-text-light sm:text-lg md:text-[4rem];
+	}
+}
+
+@layer base {
+	html {
+		font-size: 62.5%;
+		-webkit-text-size-adjust: 100%;
+	}
+
+	html,
+	body {
+		width: 100%;
+		min-height: 100%;
+		overscroll-behavior: none;
+		scroll-behavior: auto;
+	}
+
+	body {
+		padding: 0;
+		margin: 0;
+		font-size: 1.6rem;
+		line-height: 1.5;
+		font-family: var(--font-ibm);
+		font-weight: var(--regular-text);
+		background-color: var(--body);
+		color: var(--text-light);
+		-webkit-text-size-adjust: 100%;
+		-webkit-font-smoothing: antialiased;
+		text-rendering: optimizeLegibility;
+		overflow-x: hidden;
+	}
+	a {
+		text-decoration: var(--no-decoration);
+		color: inherit;
+	}
+	button {
+		cursor: pointer;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		line-height: 1;
+		font-family: var(--font-bebas);
+	}
+
+	h1 {
+		@apply font-semibold text-[2.4rem] text-dark-blue sm:text-[2.8rem];
+	}
 }
 
 * {
@@ -58,32 +117,4 @@ html,
 body,
 :root {
 	scroll-behavior: none;
-}
-
-html {
-	font-size: 62.5%;
-	-webkit-text-size-adjust: 100%;
-}
-
-html,
-body {
-	width: 100%;
-	min-height: 100%;
-	overscroll-behavior: none;
-	scroll-behavior: auto;
-}
-
-body {
-	padding: 0;
-	margin: 0;
-	font-size: 1.6rem;
-	line-height: 1.5;
-	font-family: var(--font-ibm);
-	font-weight: var(--regular-text);
-	background-color: var(--body);
-	color: var(--text-light);
-	-webkit-text-size-adjust: 100%;
-	-webkit-font-smoothing: antialiased;
-	text-rendering: optimizeLegibility;
-	overflow-x: hidden;
 }

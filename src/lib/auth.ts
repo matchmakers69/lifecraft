@@ -7,7 +7,6 @@ import { getAccountByUserId, getTwoFactorConfirmationByUserId, getUserById } fro
 import authConfig from "./auth.config";
 import { UserRole } from "@prisma/client";
 
-
 export type ExtendedUser = DefaultSession["user"] & {
 	id: string;
 	role: UserRole;

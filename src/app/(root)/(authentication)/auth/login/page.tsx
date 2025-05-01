@@ -15,10 +15,8 @@ export default function LoginPage() {
 			</LeftAuthCol>
 			<HeroAuthCol>
 				<div className="width-[480px] flex flex-col flex-wrap gap-[15px]">
-					<h2 className="mb-5 text-[2.4rem]">Start your experience with Lifecraft and change your life!</h2>
-					<p className="text-text-grey">
-						You are one step away from permanently changing the way of your life.
-					</p>
+					<h2 className="mb-5 text-[2.4rem]">{t.auth.login.content.title}</h2>
+					<p className="text-text-grey">{t.auth.login.content.subtitle}</p>
 				</div>
 			</HeroAuthCol>
 		</>

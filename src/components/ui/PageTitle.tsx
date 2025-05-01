@@ -20,13 +20,9 @@ const PageTitle = ({ title, subtitle, slogan, className }: PageTitlePropsReadOnl
 		<header className={cn("flex w-full flex-col", className)}>
 			<div className={`${slogan || subtitle ? "mb-4" : "mb-0"} flex items-center gap-2`}>
 				<StarsIcon />
-				<h1 className="text-[2rem] text-dark-blue sm:text-[2.4rem]">{title}</h1>
+				<h1 className="page-main-title">{title}</h1>
 			</div>
-			{slogan && (
-				<p className="font-oswald text-[2.4rem] font-bold leading-[1.2] text-text-light sm:text-lg md:text-[4rem]">
-					{slogan}
-				</p>
-			)}
+			{slogan && <p className="slogan-text">{slogan}</p>}
 			{subtitle && <p className="md:text-md-xl text-sm font-normal text-text-grey">{subtitle}</p>}
 		</header>
 	);
