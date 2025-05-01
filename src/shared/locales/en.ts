@@ -25,7 +25,7 @@ export const en = {
 			content: {
 				signUpWithOneClick: "Sign up with one click",
 				googleButtonSignUpText: "Sign up with Google",
-				provideRegistrationDetailsText: "or provide registration details"
+				provideRegistrationDetailsText: "or provide registration details",
 			},
 			registerSchema: {
 				nameRequired: "Name is required field",
