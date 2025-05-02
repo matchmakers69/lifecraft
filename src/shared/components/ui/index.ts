@@ -6,5 +6,5 @@ export { type AsChildProps } from "./Slot";
 export { MUIFormHelperText } from "./MUIFormHelperText";
 export { FormError } from "./FormError";
 export { FormSuccess } from "./FormSuccess";
-export { MUITextField} from "./MUITextField";
+export { MUITextField } from "./MUITextField";
 export { MUIFileInput } from "./MUIFileInput";

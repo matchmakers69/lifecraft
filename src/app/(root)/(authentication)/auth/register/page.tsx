@@ -1,4 +1,5 @@
 import { PageTitle } from "@/components/ui";
+import { SignUpForm } from "@/domains/authentication/components";
 import { GoogleAuthButton, HeroAuthCol, LeftAuthCol } from "@/domains/authentication/components/ui";
 import { t } from "@/shared/locales";
 
@@ -29,7 +30,7 @@ export default function RegisterPage() {
 						</p>
 					</div>
 				</div>
-				{/* Sign up form */}
+				<SignUpForm />
 			</LeftAuthCol>
 			<HeroAuthCol>
 				<div className="width-[480px] flex flex-col flex-wrap gap-[15px]">

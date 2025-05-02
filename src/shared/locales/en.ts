@@ -1,4 +1,7 @@
 export const en = {
+	errors: {
+		errorMsg: "An unexpected error occurred. Please try again.",
+	},
 	auth: {
 		logout: {
 			error: "Could not sign out user!",
@@ -39,6 +42,9 @@ export const en = {
 				passwordNumberRequired: "Include at least one number in your password",
 				passwordSpecialCharacterRequired: "Password requires at least one special character",
 			},
+			userExists: "User already exists!",
+			registrationSuccess: "Registration successful! Please check your email to verify your account",
+			errorInRegistration: "Error during user registration:",
 		},
 	},
 	settings: {

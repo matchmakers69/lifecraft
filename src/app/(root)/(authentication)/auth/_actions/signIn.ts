@@ -2,7 +2,7 @@
 
 import bcrypt from "bcryptjs";
 
-import { signIn as signInUser } from "@/lib/auth";
+import { signIn as login } from "@/lib/auth";
 
 import { LoginFormValues, loginSchema } from "@/domains/authentication/validationSchemas";
 import { db } from "@/db";
@@ -17,7 +17,7 @@ import {
 } from "@/domains/authentication/services";
 import { getTwoFactorConfirmationByUserId, getUserByEmail } from "@/domains/user/services";
 
-export const signIn = async (values: LoginFormValues, callbackUrl?: string | null) => {
+export const signInUser = async (values: LoginFormValues, callbackUrl?: string | null) => {
 	// server site validation
 	const validatedFields = loginSchema.safeParse(values);
 
@@ -91,7 +91,7 @@ export const signIn = async (values: LoginFormValues, callbackUrl?: string | nul
 
 	// User logins here
 	try {
-		await signInUser("credentials", {
+		await login("credentials", {
 			email,
 			password,
 			// redirectTo: callbackUrl || DEFAULT_LOGIN_REDIRECT,
