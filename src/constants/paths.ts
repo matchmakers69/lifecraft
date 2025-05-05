@@ -14,11 +14,17 @@ const paths = {
 	newPassword() {
 		return "/auth/new-password";
 	},
-	newVerification() {
-		return "/auth/new-verification";
+	verification() {
+		return "/auth/verification";
 	},
 	authError: () => {
 		return "/auth/error";
+	},
+	settings: () => {
+		return "/dashboard/settings";
+	},
+	adminDashboard() {
+		return `/administrator/dashboard`;
 	},
 } satisfies Record<string, () => string>;
 

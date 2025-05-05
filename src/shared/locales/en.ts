@@ -13,6 +13,12 @@ export const en = {
 			content: {
 				title: "Start your experience with Lifecraft and change your life!",
 				subtitle: "You are one step away from permanently changing the way of your life.",
+				signInWithOneClick: "Sign in with one click",
+				googleButtonSignInText: "Sign in with Google",
+				provideLoginDetailsText: "or provide login details",
+				noAccountYet: "Don’t have account yet?",
+				forgotPasswordLink: "Forgot your password?",
+				signUpText: "Sign up",
 			},
 			loginSchema: {
 				emailRequired: "Email is a required field",
@@ -21,6 +27,14 @@ export const en = {
 				codePattern: "Code must be exactly 6 digits if provided",
 				codeDigitsOnly: "Code must include only digits",
 			},
+			accountNotFound: "No account found with these credentials. Please sign up",
+			confirmationEmailSent: "Confirmation email sent!",
+			invalidCredentials: "Invalid credentials",
+			incorrectCode: "The code you entered is incorrect. Please try again",
+			codeExpired: "Your code has expired",
+			loginSuccess: "You’ve successfully signed in.",
+			incorrectEmailOrPassword: "The email or password you entered is incorrect.",
+			loginError: "Something went wrong with login!",
 		},
 		register: {
 			title: "Sign up",
@@ -29,6 +43,8 @@ export const en = {
 				signUpWithOneClick: "Sign up with one click",
 				googleButtonSignUpText: "Sign up with Google",
 				provideRegistrationDetailsText: "or provide registration details",
+				haveAccount: "Have an account?",
+				signInText: "Sign in",
 			},
 			registerSchema: {
 				nameRequired: "Name is required field",
@@ -45,6 +61,14 @@ export const en = {
 			userExists: "User already exists!",
 			registrationSuccess: "Registration successful! Please check your email to verify your account",
 			errorInRegistration: "Error during user registration:",
+		},
+		verification: {
+			tokenExpired: "Token has expired!",
+			verificationTokenDoeasNotExist: "Verification token does not exist!",
+			userDoesNotExist: "User does not exist!",
+			emailVerified: "Congrats! Your email has been verified.",
+			title: "User verification",
+			subtitle: "Your verification is complete",
 		},
 	},
 	settings: {

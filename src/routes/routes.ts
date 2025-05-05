@@ -5,7 +5,7 @@ import { paths } from "@/constants";
  * These routes do not require authentication
  * @type {string[]}
  */
-const publicRoutes: string[] = [paths.home(), paths.newVerification()];
+const publicRoutes: string[] = [paths.home(), paths.verification()];
 
 /**
  * An array of routes that are used for authentication

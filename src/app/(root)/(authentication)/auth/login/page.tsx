@@ -1,5 +1,6 @@
 import { PageTitle } from "@/components/ui";
-import { HeroAuthCol, LeftAuthCol } from "@/domains/authentication/components/ui";
+import { SignInForm } from "@/domains/authentication/components";
+import { GoogleAuthButton, HeroAuthCol, LeftAuthCol } from "@/domains/authentication/components/ui";
 import { t } from "@/shared/locales";
 
 export default function LoginPage() {
@@ -12,6 +13,29 @@ export default function LoginPage() {
 					slogan={t.auth.login.slogan}
 					subtitle={t.auth.login.subtitle}
 				/>
+				<div className="mb-4 w-full">
+					<p className="mb-4 text-base font-normal text-text-light">
+						{t.auth.login.content.signInWithOneClick}
+					</p>
+					<div className="flex w-full flex-col gap-[15px]">
+						<div className="flex w-full flex-wrap items-center justify-between gap-[15px] sm:flex-nowrap">
+							<div className="w-full max-w-[100%] xl:max-w-md">
+								<GoogleAuthButton text={t.auth.login.content.googleButtonSignInText} />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="relative w-full">
+					<div aria-hidden="true" className="absolute inset-0 flex items-center">
+						<div className="w-full border-t border-[rgb(175,175,175)]" />
+					</div>
+					<div className="relative flex justify-center">
+						<p className="bg-[rgb(20,20,20)] px-3 text-base text-text-grey dark:bg-neutral-900">
+							{t.auth.login.content.provideLoginDetailsText}
+						</p>
+					</div>
+				</div>
+				<SignInForm />
 			</LeftAuthCol>
 			<HeroAuthCol>
 				<div className="width-[480px] flex flex-col flex-wrap gap-[15px]">

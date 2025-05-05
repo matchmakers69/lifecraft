@@ -32,23 +32,23 @@ export const metadata: Metadata = {
 	creator: "Przemek Lewtak",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: Readonly<{
 	children: React.ReactNode;
 }>) {
 	return (
-		<SessionProvider>
-			<html lang="en" suppressContentEditableWarning={true}>
-				<body className={`${fontsClassName} body-app scroll-touch`}>
+		<html lang="en">
+			<body className={`${fontsClassName} body-app scroll-touch`}>
+				<SessionProvider>
 					<ThemeRegistryProvider>
 						<ToasterProvider />
 						<ProgressBarProvider>
 							<LocalizationProvider>{children}</LocalizationProvider>
 						</ProgressBarProvider>
 					</ThemeRegistryProvider>
-				</body>
-			</html>
-		</SessionProvider>
+				</SessionProvider>
+			</body>
+		</html>
 	);
 }

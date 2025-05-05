@@ -9,7 +9,9 @@ import { Loader2 } from "lucide-react";
 import { RegisterFormValues } from "../validationSchemas";
 import Stack from "@mui/material/Stack";
 import { Button, FormError, FormSuccess, MUIFormHelperText, MUITextField } from "@/shared/components/ui";
-import { signUpUser } from "@/app/(root)/(authentication)/auth/_actions/signUp";
+import { signUpUser } from "@/app/(root)/(authentication)/auth/_actions";
+import { paths } from "@/constants";
+import { t } from "@/shared/locales";
 
 const SignUpForm = () => {
 	const { clientReady } = useClientReady();
@@ -143,9 +145,9 @@ const SignUpForm = () => {
 				</Button>
 			</form>
 			<div className="mt-[16px] flex w-full items-center gap-[8px]">
-				<p className="text-[12px] text-text-grey">Have an account?</p>
+				<p className="text-[12px] text-text-grey">{t.auth.register.content.haveAccount}</p>
 				<Button className="flex-start min-w-[auto] px-0 underline" asChild variant="link" size="sm">
-					<Link href="/auth/login">Sign in</Link>
+					<Link href={paths.login()}>{t.auth.register.content.signInText}</Link>
 				</Button>
 			</div>
 		</>

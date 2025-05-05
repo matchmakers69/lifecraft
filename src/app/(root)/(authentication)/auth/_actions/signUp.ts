@@ -18,10 +18,10 @@ type SignUpUserFormState = {
 	success?: string;
 };
 
-export async function signUpUser(
+const signUpUser = async (
 	prevState: SignUpUserFormState,
 	formData: FormData,
-): Promise<SignUpUserFormState> {
+): Promise<SignUpUserFormState> => {
 	const result = registerSchema.safeParse({
 		name: formData.get("name"),
 		email: formData.get("email"),
@@ -76,4 +76,6 @@ export async function signUpUser(
 			},
 		};
 	}
-}
+};
+
+export { signUpUser };
