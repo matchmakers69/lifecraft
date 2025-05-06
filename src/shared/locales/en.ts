@@ -1,10 +1,20 @@
 export const en = {
+	navigationLinks: {
+		home: "Home",
+		settings: "Settings",
+		admin: "Admin",
+	},
+	sidebarNavigationLinks: {
+		home: "Home",
+		settings: "Settings",
+	},
 	errors: {
 		errorMsg: "An unexpected error occurred. Please try again.",
 	},
 	auth: {
 		logout: {
 			error: "Could not sign out user!",
+			signOut: "Sign out",
 		},
 		login: {
 			slogan: "Welcome back!",
@@ -35,6 +45,9 @@ export const en = {
 			loginSuccess: "You’ve successfully signed in.",
 			incorrectEmailOrPassword: "The email or password you entered is incorrect.",
 			loginError: "Something went wrong with login!",
+			signInButton: "Sign in",
+			processingText: "Processing...",
+			confirmText: "Confirm",
 		},
 		register: {
 			title: "Sign up",

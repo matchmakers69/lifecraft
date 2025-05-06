@@ -4,4 +4,3 @@ export { Navigation } from "./Navigation";
 export { NavLink } from "./NavLink";
 export { Footer } from "./Footer";
 export { Header } from "./Header";
-export { HeaderAuth } from "./HeaderAuth";

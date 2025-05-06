@@ -174,7 +174,11 @@ const SignInForm = () => {
 					<FormSuccess message={state.success ?? ""} />
 				</div>
 				<Button type="submit" variant="default" size="full" disabled={!isDirty || isPending}>
-					{isPending ? "Processing..." : showTwoFactor ? "Confirm" : "Login"}
+					{isPending
+						? t.auth.login.processingText
+						: showTwoFactor
+							? t.auth.login.confirmText
+							: t.auth.login.signInButton}
 				</Button>
 			</form>
 			<Stack

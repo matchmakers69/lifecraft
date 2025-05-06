@@ -1,16 +1,16 @@
-import { Session } from 'next-auth';
-import { create } from 'zustand';
+import { Session } from "next-auth";
+import { create } from "zustand";
 
 type SessionStore = {
-    session: Session | null;
-    setSession: (session: Session | null) => void;
-    logout: () => void;
-  };
+	session: Session | null;
+	setSession: (session: Session | null) => void;
+	logout: () => void;
+};
 
 const useSessionStore = create<SessionStore>((set) => ({
-    session: null,
-    setSession: (session) => set({ session }),
-    logout: () => set({ session: null }),
-  }));
+	session: null,
+	setSession: (session) => set({ session }),
+	logout: () => set({ session: null }),
+}));
 
-  export { useSessionStore }
+export { useSessionStore };

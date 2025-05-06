@@ -1,21 +1,22 @@
 import { v4 as uuidv4 } from "uuid";
 import { paths } from "./paths";
+import { t } from "@/shared/locales";
 
 const navigation = [
 	{
 		id: uuidv4(),
 		url: paths.home(),
-		linkLabel: "Home",
+		linkLabel: `${t.navigationLinks.home}`,
 	},
 	{
 		id: uuidv4(),
 		url: paths.settings(),
-		linkLabel: "Settings",
+		linkLabel: `${t.navigationLinks.settings}`,
 	},
 	{
 		id: uuidv4(),
 		url: paths.adminDashboard(),
-		linkLabel: "Admin",
+		linkLabel: `${t.navigationLinks.admin}`,
 	},
 ];
 

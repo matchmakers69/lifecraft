@@ -1,4 +1,5 @@
-import { HeaderAuth, Navigation, Header } from ".";
+import { HeaderAuth } from "@/domains/authentication/components/ui";
+import { Navigation, Header } from ".";
 
 const Navbar = () => {
 	return (

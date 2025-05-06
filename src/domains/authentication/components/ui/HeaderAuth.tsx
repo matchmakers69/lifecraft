@@ -5,8 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import { paths } from "@/constants";
 import { Button } from "@/shared/components/ui";
-import { LogOutButton } from "@/domains/authentication/components/ui";
 import { useSessionWithUpdate } from "@/domains/authentication/hooks";
+import { NavbarLogoutButton } from "@/domains/authentication/components/ui";
 
 const HeaderAuth = () => {
 	const { session } = useSessionWithUpdate();
@@ -23,7 +23,7 @@ const HeaderAuth = () => {
 				<Link className="block h-[30px] w-[30px]" href={paths.settings()}>
 					<Image alt="User avatar" src={avatarSrc} width="30" height="30" className="rounded-full" />
 				</Link>
-				<LogOutButton />
+				<NavbarLogoutButton />
 			</div>
 		);
 	} else {
