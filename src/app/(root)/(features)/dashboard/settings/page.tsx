@@ -1,7 +1,7 @@
 import { PageTitle } from "@/components/ui";
 import { Metadata } from "next";
 import { t } from "@/shared/locales";
-import { UserContainer } from "@/domains/user/components";
+import { UserDetails } from "@/domains/user/components";
 
 export const metadata: Metadata = {
 	title: "Account Settings | Lifecraft",
@@ -14,7 +14,7 @@ export default function SettingsPage() {
 		<>
 			<PageTitle className="mb-16" title={t.settings.title} />
 			<div className="grid-row-2">
-				<UserContainer />
+				<UserDetails />
 			</div>
 		</>
 	);

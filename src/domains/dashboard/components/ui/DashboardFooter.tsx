@@ -1,6 +1,6 @@
 "use client";
 
-import { LogoutButton } from "@/domains/authentication/components/ui";
+import { LogoutUserButton } from "@/domains/authentication/components/ui";
 import { useSessionWithUpdate } from "@/domains/authentication/hooks";
 
 const DashboardFooter = () => {
@@ -28,7 +28,7 @@ const DashboardFooter = () => {
 							)}
 						</div>
 						<div className="flex items-center py-4">
-							<LogoutButton />
+							<LogoutUserButton />
 						</div>
 					</>
 				)}

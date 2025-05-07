@@ -7,7 +7,7 @@ import { logout } from "@/app/(root)/(authentication)/auth/_actions";
 import { paths } from "@/constants";
 import { Button } from "@/shared/components/ui";
 
-const LogoutButton = () => {
+export const LogoutUserButton = () => {
 	const { update } = useSessionWithUpdate();
 	const router = useRouter();
 
@@ -30,5 +30,3 @@ const LogoutButton = () => {
 		</Button>
 	);
 };
-
-export { LogoutButton };
