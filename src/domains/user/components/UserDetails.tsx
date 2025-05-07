@@ -1,6 +1,6 @@
 import { CardDarkWrapper, CardTitle } from "@/shared/components/cards";
 
-const UserContainer = () => {
+const UserDetails = () => {
 	return (
 		<CardDarkWrapper>
 			<CardTitle className="text-[2.2rem]">User profile</CardTitle>
@@ -8,4 +8,4 @@ const UserContainer = () => {
 	);
 };
 
-export { UserContainer };
+export { UserDetails };
