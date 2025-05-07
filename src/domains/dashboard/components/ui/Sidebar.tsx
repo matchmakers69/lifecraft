@@ -4,26 +4,20 @@ import { useDashboardContext } from "@/domains/dashboard/context/DashboardContex
 import { sidebarNavigationList } from "../../services";
 import { useToggle } from "@/shared/hooks";
 import { NavLink } from "@/components/ui";
-import { useSessionWithUpdate } from "@/domains/authentication/hooks";
-import { LogoutButton } from "@/domains/authentication/components/ui";
 import { SidebarLogoWrapper } from "./SidebarLogoWrapper";
+import { DashboardFooter } from "./DashboardFooter";
 
 const Sidebar = () => {
 	const { isSidebarInView } = useDashboardContext();
 	const { isOn, toggle } = useToggle();
-	const { session } = useSessionWithUpdate();
-	const userName = session?.user.name ?? "Username";
-	const email = session?.user.email ?? "";
 
 	return (
 		<aside
-			className={`fixed inset-y-0 left-0 z-40 w-[32rem] flex-shrink-0 border-r border-dark-border bg-sidebar-grey transition-transform duration-300 ease-in-out ${isSidebarInView ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
+			className={`fixed inset-y-0 left-0 z-40 w-[32rem] bg-dark-navy flex-shrink-0 transition-transform duration-300 ease-in-out ${isSidebarInView ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0`}
 		>
-			<nav className="bg-platinum flex h-full min-h-0 flex-col">
-				<div className="flex flex-col border-b border-dark-border p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
-					<div className="flex flex-col justify-center">
-						<SidebarLogoWrapper />
-					</div>
+			<nav className="flex h-full min-h-0 flex-col">
+				<div className="flex flex-col p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
+					<SidebarLogoWrapper />
 				</div>
 				<div className="flex flex-1 flex-col overflow-y-auto p-6 [&>[data-slot=section]+[data-slot=section]]:mt-8">
 					<div className="flex-scroll-mb-5 mb-8 flex w-full">
@@ -34,7 +28,7 @@ const Sidebar = () => {
 							{sidebarNavigationList.map((link) => {
 								return (
 									<li key={link.id}>
-										{link.children ? (
+										{Array.isArray(link.children) && link.children.length > 0 ? (
 											<div>
 												<button
 													onClick={() => toggle()}
@@ -81,30 +75,7 @@ const Sidebar = () => {
 						</ul>
 					</div>
 				</div>
-				<footer className="flex flex-col border-t border-dark-border p-6 [&>[data-slot=section]+[data-slot=section]]:mt-2.5">
-					{session && session.user && (
-						<>
-							<div className="username-wrapper mb-4 flex w-full select-none flex-col flex-wrap gap-[5px]">
-								<label className={`text-base font-normal uppercase text-text-grey`}>Signed as</label>
-								{status === "loading" ? (
-									<span>Loading...</span>
-								) : (
-									<div className="flex w-full flex-col flex-wrap gap-[3px]">
-										<p className="w-full overflow-hidden text-ellipsis text-left text-sm text-text-light">
-											{userName}
-										</p>
-										<p className="w-full overflow-hidden text-ellipsis text-left text-sm font-semibold text-text-light">
-											{email}
-										</p>
-									</div>
-								)}
-							</div>
-							<div className="flex items-center py-4">
-								<LogoutButton />
-							</div>
-						</>
-					)}
-				</footer>
+				<DashboardFooter />
 			</nav>
 		</aside>
 	);

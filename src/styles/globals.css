@@ -35,6 +35,8 @@
 	--color-white: #fff;
 	--color-ring-dark: #2a3132;
 	--color-dark-blue: #00cccc;
+	--color-dark-navy: #202226;
+	--color-dark-grey: #272a2d;
 }
 
 @utility flex-center {
@@ -54,6 +56,37 @@
 	.slogan-text {
 		font-family: var(--font-oswald);
 		@apply text-[2.4rem] font-bold leading-[1.2] mb-2 text-text-light sm:text-lg md:text-[4rem];
+	}
+	.dark-border {
+		@apply border-solid border-[hsla(0,0%,100%,0.05)];
+	}
+	.sidebar-menu-toggle-button-icon::after,
+	.sidebar-menu-toggle-button-icon::before {
+		content: "";
+		height: 1px;
+	}
+
+	.sidebar-menu-toggle-button-icon::after {
+		width: 0.8rem;
+		margin: 3px 0;
+	}
+
+	.site-menu-toggle-icon-dark::before,
+	.sidebar-menu-toggle-button-icon::before {
+		width: 1.4rem;
+		margin: 3px 0;
+	}
+
+	.sidebar-menu-toggle-button-icon::after {
+		background: var(--text-light);
+	}
+
+	.sidebar-menu-toggle-button-icon::before {
+		background: var(--text-light);
+	}
+
+	.focus-global {
+		@apply focus:outline-none focus-visible:ring-1 focus-visible:ring-berry-blue focus-visible:ring-offset-0;
 	}
 }
 

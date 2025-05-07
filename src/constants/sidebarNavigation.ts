@@ -18,12 +18,11 @@ const sidebarNavigation: SidebarItem[] = [
 	{
 		id: uuidv4(),
 		label: `${t.sidebarNavigationLinks.home}`,
-		children: [],
 	},
 	{
 		id: uuidv4(),
 		label: `${t.sidebarNavigationLinks.settings}`,
-		children: [],
+
 	},
 ];
 

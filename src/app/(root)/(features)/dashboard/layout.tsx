@@ -4,7 +4,7 @@ import { DashboardContextProvider } from "@/domains/dashboard/context/DashboardC
 
 export default function DashboardLayout({ children }: Readonly<{ children: ReactNode }>) {
 	return (
-		<div className="relative isolate flex min-h-[100svh] w-full">
+		<div className="relative isolate flex min-h-[100svh] w-full dashboard-layout">
 			<DashboardContextProvider>
 				<Sidebar />
 				<DashboardContent>{children}</DashboardContent>
