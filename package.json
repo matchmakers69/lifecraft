@@ -8,7 +8,6 @@
 		"build": "next build",
 		"start": "next start",
 		"lint": "next lint --fix",
-		"prepare": "husky install",
 		"format": "prettier --write ."
 	},
 	"prisma": {
