@@ -4,9 +4,12 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev --turbopack",
-		"build": "next build",
+		"generate": "prisma generate",
+		"postinstall": "npm run generate",
+		"build": "npm run generate && next build",
 		"start": "next start",
-		"lint": "next lint",
+		"lint": "next lint --fix",
+		"prepare": "husky install",
 		"format": "prettier --write ."
 	},
 	"prisma": {
