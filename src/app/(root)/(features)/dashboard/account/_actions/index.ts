@@ -1,0 +1,1 @@
+export { updateUserDetails} from "./updateUserDetails";

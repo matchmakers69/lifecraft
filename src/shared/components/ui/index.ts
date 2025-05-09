@@ -8,3 +8,4 @@ export { FormError } from "./FormError";
 export { FormSuccess } from "./FormSuccess";
 export { MUITextField } from "./MUITextField";
 export { MUIFileInput } from "./MUIFileInput";
+export { Checkbox } from "./Checkbox";
