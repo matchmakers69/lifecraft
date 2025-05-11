@@ -2,11 +2,13 @@ export const en = {
 	navigationLinks: {
 		home: "Home",
 		settings: "Settings",
+		account: "Account",
 		admin: "Admin",
 	},
 	sidebarNavigationLinks: {
 		home: "Home",
 		settings: "Settings",
+		account: "Account",
 	},
 	errors: {
 		errorMsg: "An unexpected error occurred. Please try again.",
@@ -42,7 +44,7 @@ export const en = {
 			invalidCredentials: "Invalid credentials",
 			incorrectCode: "The code you entered is incorrect. Please try again",
 			codeExpired: "Your code has expired",
-			loginSuccess: "You’ve successfully signed in.",
+			loginSuccess: "You’ve successfully signed in. Please wait while we redirect you to your dashboard.",
 			incorrectEmailOrPassword: "The email or password you entered is incorrect.",
 			loginError: "Something went wrong with login!",
 			signInButton: "Sign in",
@@ -74,6 +76,7 @@ export const en = {
 			userExists: "User already exists!",
 			registrationSuccess: "Registration successful! Please check your email to verify your account",
 			errorInRegistration: "Error during user registration:",
+			
 		},
 		verification: {
 			tokenExpired: "Token has expired!",
@@ -83,8 +86,25 @@ export const en = {
 			title: "User verification",
 			subtitle: "Your verification is complete",
 		},
+		errors: {
+			mustBeAuthorized: "You must be authorized to do this.",
+			emailUsed: "Email already used",
+			userNotFoundInSession: "User not found in session. Middleware may not be protecting this route."
+		},
+		success: {
+			alertEmail:"Verification email sent!"
+		}
 	},
 	settings: {
 		title: "Settings",
+		errors: {
+			noUpdate:"No changes to update. Please modify at least one field."
+		}
+	},
+	account: {
+		title: "Account",
+		errors: {
+			noUpdate:"No changes to update. Please modify at least one field."
+		}
 	},
 } satisfies Record<string, unknown>;

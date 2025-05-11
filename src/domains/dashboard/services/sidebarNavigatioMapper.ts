@@ -13,6 +13,10 @@ const sidebarNavigationList = sidebarNavigation.map((navItem) => {
 			href = paths.settings();
 			icon = "settings";
 			break;
+			case "account":
+				href = paths.account();
+				icon = "account-circle";
+				break;
 
 		default:
 			break;

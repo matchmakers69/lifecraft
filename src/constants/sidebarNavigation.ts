@@ -24,6 +24,11 @@ const sidebarNavigation: SidebarItem[] = [
 		label: `${t.sidebarNavigationLinks.settings}`,
 
 	},
+	{
+		id: uuidv4(),
+		label: `${t.sidebarNavigationLinks.account}`,
+
+	},
 ];
 
 export { sidebarNavigation };

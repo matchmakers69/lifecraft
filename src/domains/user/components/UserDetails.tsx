@@ -1,9 +1,16 @@
+import { ExtendedUser } from "@/lib/auth";
 import { CardDarkWrapper, CardTitle } from "@/shared/components/cards";
+import { UpdateUserDetailsForm } from "./UpdateUserDetailsForm";
 
-const UserDetails = () => {
+type UserDetailsProps = {
+	user: ExtendedUser;
+};
+
+const UserDetails = ({ user }: UserDetailsProps) => {
 	return (
 		<CardDarkWrapper>
-			<CardTitle className="text-[2.2rem]">User profile</CardTitle>
+			<CardTitle className="text-[2.2rem]">Profile</CardTitle>
+			<UpdateUserDetailsForm user={user} />
 		</CardDarkWrapper>
 	);
 };

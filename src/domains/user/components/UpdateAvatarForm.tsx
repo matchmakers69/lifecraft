@@ -1,37 +1,35 @@
-"use client";
-
-import { updateUserDetails } from "@/app/(root)/(features)/dashboard/account/_actions";
+import { updateAvatar } from "@/app/(root)/(features)/dashboard/account/_actions";
 import { useClientReady } from "@/shared/hooks";
 import toast from "react-hot-toast";
 import { Loader, Loader2 } from "lucide-react";
-import { startTransition, useActionState, useEffect, useRef } from "react";
-import { UpdateUserDetailsValues } from "../validationSchemas";
+import { startTransition, useActionState, useEffect, useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { ExtendedUser } from "@/lib/auth";
-import { Button, MUIFormHelperText, MUITextField } from "@/shared/components/ui";
+import { Button, MUIFileInput } from "@/shared/components/ui";
+import { UpdateAvatarValues } from "../validationSchemas";
 
-type UpdateUserDetailsFormProps = {
+type UpdateAvatarFormProps = {
 	user: ExtendedUser;
 };
 
-export const UpdateUserDetailsForm = ({ user }: UpdateUserDetailsFormProps) => {
+export const UpdateAvatarForm = ({ user }: UpdateAvatarFormProps) => {
 	const { clientReady } = useClientReady();
 	const formRef = useRef<HTMLFormElement>(null);
-	const [state, formAction, isPending] = useActionState(updateUserDetails, {
+	const [isUploading, setIsUploading] = useState(false);
+	const [imagePreview, setImagePreview] = useState<string | null>(null);
+	const [state, formAction, isPending] = useActionState(updateAvatar, {
 		errors: {},
 		success: "",
 	});
-	const { control, handleSubmit, reset } = useForm<UpdateUserDetailsValues>({
+	const { control, handleSubmit, reset } = useForm<UpdateAvatarValues>({
 		mode: "onTouched",
 		defaultValues: {
-			name: "",
-			email: "",
+			image: "",
 		},
 	});
 	useEffect(() => {
 		reset({
-			name: user?.name || "",
-			email: user?.email || "",
+			image: user?.image || "",
 		});
 	}, [user, reset]);
 
@@ -39,8 +37,7 @@ export const UpdateUserDetailsForm = ({ user }: UpdateUserDetailsFormProps) => {
 		if (state?.success) {
 			toast.success(state.success);
 			reset({
-				name: state.updatedUser?.name || user.name || undefined,
-				email: state.updatedUser?.email || user.email || undefined,
+				image: state.updateUserAvatar?.image || user.image || undefined,
 			});
 		}
 	}, [reset, state, user]);
@@ -64,48 +61,33 @@ export const UpdateUserDetailsForm = ({ user }: UpdateUserDetailsFormProps) => {
 				handleSubmit(handleUpdateUserDetails)(event);
 			}}
 		>
-			<div className="mb-12">
-				<Controller
-					name="name"
-					control={control}
-					render={({ field }) => (
-						<MUITextField
-							{...field}
-							id="name"
-							placeholder="Enter your name"
-							label="Name"
-							variant="outlined"
-							error={!!state?.errors?.name}
-							fullWidth
-							margin="none"
-						/>
-					)}
-				/>
-
-				{state?.errors?.name && <MUIFormHelperText>{state.errors.name.join(", ")}</MUIFormHelperText>}
-			</div>
-
 			{!user.is0Auth && (
 				<>
 					<div className="mb-12">
 						<Controller
-							name="email"
+							name="image"
 							control={control}
-							render={({ field }) => (
-								<MUITextField
-									{...field}
-									id="email"
-									placeholder="Enter your email"
-									label="Email"
+							render={({ field: { onChange, onBlur, ref, name } }) => (
+								<MUIFileInput
+									accept="image/*"
+									id="image"
+									name={name}
+									label="Avatar"
 									variant="outlined"
-									error={!!state?.errors?.email}
+									onBlur={onBlur}
+									ref={ref}
 									fullWidth
 									margin="none"
-									type="email"
+									onFileChange={(file) => {
+										onChange(file ?? imagePreview);
+										if (file) {
+											const imageUrl = URL.createObjectURL(file);
+											setImagePreview(imageUrl);
+										}
+									}}
 								/>
 							)}
 						/>
-						{state?.errors?.email && <MUIFormHelperText>{state.errors.email.join(", ")}</MUIFormHelperText>}
 					</div>
 				</>
 			)}

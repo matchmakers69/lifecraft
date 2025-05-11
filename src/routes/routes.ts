@@ -30,6 +30,6 @@ const apiAuthPrefix: string = "/api/auth";
  * The default redirect path after logging in
  * @type {string}
  */
-const DEFAULT_LOGIN_REDIRECT: string = paths.settings();
+const DEFAULT_LOGIN_REDIRECT: string = paths.account();
 
 export { publicRoutes, authRoutes, apiAuthPrefix, DEFAULT_LOGIN_REDIRECT };

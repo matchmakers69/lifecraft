@@ -1,20 +1,23 @@
 import { PageTitle } from "@/components/ui";
 import { Metadata } from "next";
 import { t } from "@/shared/locales";
-import { UserDetails } from "@/domains/user/components";
+import { currentUser } from "@/lib/getCurrentUser";
+import { SettingsDetails } from "@/domains/settings/components";
 
 export const metadata: Metadata = {
-	title: "Account Settings | Lifecraft",
+	title: "Settings | Lifecraft",
 	description:
-		"Manage your account settings, update personal information, change preferences, and enhance security. Customize your experience effortlessly.",
+		"Configure your Lifecraft experience, manage preferences, notifications, and security settings in one place.",
 };
 
-export default function SettingsPage() {
+export default async function SettingsPage() {
+	const user = await currentUser();
+
 	return (
 		<>
 			<PageTitle className="mb-16" title={t.settings.title} />
 			<div className="grid-row-2">
-				<UserDetails />
+				<SettingsDetails user={user} />
 			</div>
 		</>
 	);

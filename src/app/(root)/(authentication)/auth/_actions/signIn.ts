@@ -3,7 +3,7 @@
 import bcrypt from "bcryptjs";
 
 import { signIn as login } from "@/lib/auth";
-import { loginSchema } from "@/domains/authentication/validationSchemas";
+import { LoginFormValues, loginSchema } from "@/domains/authentication/validationSchemas";
 import { db } from "@/db";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import {
@@ -25,18 +25,19 @@ type SignInUserState = {
 	};
 	success?: string;
 	twoFactor?: boolean;
-	callbackUrl?: string; // Added callbackUrl property
+	callbackUrl?: string;
 };
 
+
+
 export const signInUser = async (
-	prevState: SignInUserState,
-	formData: FormData,
+	values: LoginFormValues,
 	callbackUrl?: string | null,
-): Promise<SignInUserState> => {
+):Promise<SignInUserState> => {
 	const result = loginSchema.safeParse({
-		email: formData.get("email"),
-		password: formData.get("password"),
-		code: formData.get("code") ?? undefined,
+		email: values.email,
+		password: values.password,
+		code: values.code ?? undefined,
 	});
 
 	if (!result.success) {

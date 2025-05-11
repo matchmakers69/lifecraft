@@ -10,11 +10,6 @@ const navigation = [
 	},
 	{
 		id: uuidv4(),
-		url: paths.settings(),
-		linkLabel: `${t.navigationLinks.settings}`,
-	},
-	{
-		id: uuidv4(),
 		url: paths.adminDashboard(),
 		linkLabel: `${t.navigationLinks.admin}`,
 	},

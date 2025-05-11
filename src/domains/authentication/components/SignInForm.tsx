@@ -1,101 +1,29 @@
 "use client";
 
-import { FormEvent, startTransition, useActionState, useEffect, useRef, useState } from "react";
-import { Controller, useForm } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import Link from "next/link";
-import toast from "react-hot-toast";
+
 import { useClientReady } from "@/shared/hooks";
 import { Loader2 } from "lucide-react";
-import { LoginFormValues } from "../validationSchemas";
+
 import Stack from "@mui/material/Stack";
 import { Button, FormError, FormSuccess, MUIFormHelperText, MUITextField } from "@/shared/components/ui";
-import { useSearchParams, useRouter } from "next/navigation";
-import { signInUser } from "@/app/(root)/(authentication)/auth/_actions";
+
 import { paths } from "@/constants";
 import { t } from "@/shared/locales";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
-import { useSessionWithUpdate } from "../hooks";
+import { useSignInUser } from "../hooks";
 
 const SignInForm = () => {
-	const [showTwoFactor, setShowTwoFactor] = useState(false);
-	const { update } = useSessionWithUpdate();
-	const router = useRouter();
-	const searchParams = useSearchParams();
-	const urlError =
-		searchParams.get("error") === "OAuthAccountNotLinked"
-			? `Email already in use. Please login with form.`
-			: "";
 	const { clientReady } = useClientReady();
-	const formRef = useRef<HTMLFormElement>(null);
-	const [state, formAction, isPending] = useActionState(signInUser, {
-		errors: {},
-		success: "",
-	});
-	const {
-		control,
-		handleSubmit,
-		reset,
-		formState: { isDirty },
-	} = useForm<LoginFormValues>({
-		mode: "onTouched",
-		defaultValues: {
-			email: "",
-			password: "",
-			code: "",
-		},
-	});
-
-	const handleLoginUserSubmit = () => {
-		const formData = new FormData(formRef.current!);
-		startTransition(() => {
-			formAction(formData);
-		});
-	};
-
-	useEffect(() => {
-		if (state.success) {
-			toast.success(state.success);
-			reset();
-		}
-
-		if (state.twoFactor) {
-			setShowTwoFactor(true);
-		}
-
-		if (state.errors?._form?.length) {
-			toast.error(state.errors._form.join(", "));
-			reset();
-			setShowTwoFactor(false);
-		}
-	}, [state, reset]);
-
-	useEffect(() => {
-		if (state.success && !state.twoFactor) {
-			// 1. Update session
-			update().then(() => {
-				// 2. Then refresh router and redirect
-				router.refresh();
-				router.push(state.callbackUrl || DEFAULT_LOGIN_REDIRECT);
-			});
-		}
-	}, [state, router, update]);
+	const { submitSignIn, control, isDirty, isPending, success, error, errors, urlError, showTwoFactor } =
+		useSignInUser();
 
 	if (!clientReady) {
 		return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
 	}
 	return (
 		<>
-			<form
-				onSubmit={(e: FormEvent<HTMLFormElement>) => {
-					e.preventDefault();
-					handleSubmit(handleLoginUserSubmit)(e);
-				}}
-				className="w-full"
-				action={formAction}
-				ref={formRef}
-				autoComplete="off"
-				noValidate
-			>
+			<form onSubmit={submitSignIn} className="w-full" autoComplete="off" noValidate>
 				{showTwoFactor && ( // BE AWARE: Currently no functinality to change 2FA from front end, possibly Admin panel needed - currentlu we toggle tru/false from database
 					<div>
 						<Controller
@@ -108,14 +36,14 @@ const SignInForm = () => {
 									placeholder="i.e 123456"
 									label="Verification Code"
 									variant="outlined"
-									error={!!state?.errors?.code}
+									error={!!errors?.code}
 									fullWidth
 									disabled={isPending}
 									margin="normal"
 								/>
 							)}
 						/>
-						{state?.errors?.code && <MUIFormHelperText>{state.errors.code.join(", ")}</MUIFormHelperText>}
+						{errors?.code && <MUIFormHelperText>{errors.code.message}</MUIFormHelperText>}
 					</div>
 				)}
 				{!showTwoFactor && (
@@ -137,13 +65,13 @@ const SignInForm = () => {
 										placeholder="Enter your email"
 										label="Email"
 										variant="outlined"
-										error={!!state?.errors?.email}
+										error={!!errors?.email}
 										fullWidth
 										margin="normal"
 									/>
 								)}
 							/>
-							{state?.errors?.email && <MUIFormHelperText>{state.errors.email.join(", ")}</MUIFormHelperText>}
+							{errors?.email && <MUIFormHelperText>{errors.email.message}</MUIFormHelperText>}
 						</div>
 						<div>
 							<Controller
@@ -157,21 +85,19 @@ const SignInForm = () => {
 										placeholder="******************"
 										label="Password"
 										variant="outlined"
-										error={!!state?.errors?.password}
+										error={!!errors?.password}
 										fullWidth
 										margin="normal"
 									/>
 								)}
 							/>
-							{state?.errors?.password && (
-								<MUIFormHelperText>{state.errors.password.join(", ")}</MUIFormHelperText>
-							)}
+							{errors?.password && <MUIFormHelperText>{errors.password.message}</MUIFormHelperText>}
 						</div>
 					</Stack>
 				)}
 				<div className="mb-8">
-					<FormError message={state.errors?._form?.join(", ") || urlError} />
-					<FormSuccess message={state.success ?? ""} />
+					<FormError message={error || urlError} />
+					<FormSuccess message={success ?? "Congrats! You are now logged in!"} />
 				</div>
 				<Button type="submit" variant="default" size="full" disabled={!isDirty || isPending}>
 					{isPending

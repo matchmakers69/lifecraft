@@ -38,7 +38,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html suppressHydrationWarning lang="en">
 			<body className={`${fontsClassName} body-app scroll-touch`}>
 				<SessionProvider>
 					<ThemeRegistryProvider>

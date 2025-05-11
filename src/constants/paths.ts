@@ -23,6 +23,9 @@ const paths = {
 	settings: () => {
 		return "/dashboard/settings";
 	},
+	account: () => {
+		return "/dashboard/account";
+	},
 	adminDashboard() {
 		return `/administrator/dashboard`;
 	},
