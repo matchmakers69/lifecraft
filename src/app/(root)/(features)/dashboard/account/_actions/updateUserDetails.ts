@@ -10,19 +10,7 @@ import { db } from "@/db";
 import { paths } from "@/constants";
 import { currentUser } from "@/lib/getCurrentUser";
 import { t } from "@/shared/locales";
-
-type UpdateUserSettingsFormState = {
-	errors?: {
-		name?: string[];
-		email?: string[];
-		_form?: string[];
-	};
-	success?: string;
-	updatedUser?: {
-		name: string | null;
-		email: string | null;
-	};
-};
+import { UpdateUserSettingsFormState } from "@/domains/user/types";
 
 export async function updateUserDetails(
 	prevState: UpdateUserSettingsFormState,
@@ -31,6 +19,7 @@ export async function updateUserDetails(
 	const result = updateUserDetailsSchema.safeParse({
 		name: formData.get("name"),
 		email: formData.get("email"),
+
 	});
 
 	if (!result.success) {
@@ -88,6 +77,7 @@ export async function updateUserDetails(
 		updateData.email = result.data.email;
 	}
 
+
 	// Check if any data to update
 	if (Object.keys(updateData).length === 0) {
 		return {
@@ -104,7 +94,7 @@ export async function updateUserDetails(
 		});
 		revalidatePath(paths.settings());
 		return {
-			success: "Settings updated!",
+			success: t.account.successAlert,
 			errors: {},
 			updatedUser: {
 				name: updatedUser.name,
@@ -113,13 +103,13 @@ export async function updateUserDetails(
 		};
 	} catch (err) {
 		if (err instanceof PrismaClientKnownRequestError && err.code === "P2002") {
-			return { errors: { email: ["Email already used"] } };
+			return { errors: { email: [t.auth.errors.emailUsed] } };
 		}
 
 		if (err instanceof PrismaClientKnownRequestError && (err.code === "P1001" || err.code === "P1002")) {
 			return {
 				errors: {
-					_form: ["Unable to connect to the database. Please try again later."],
+					_form: [t.account.errors.unableToConnectWithDatabase],
 				},
 			};
 		}
@@ -134,7 +124,7 @@ export async function updateUserDetails(
 
 		return {
 			errors: {
-				_form: ["Something went wrong..."],
+				_form: [t.account.errors.updateWentWrong],
 			},
 		};
 	}

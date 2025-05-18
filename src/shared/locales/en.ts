@@ -103,8 +103,11 @@ export const en = {
 	},
 	account: {
 		title: "Account",
+		successAlert: "User details updated successfully!",
 		errors: {
-			noUpdate:"No changes to update. Please modify at least one field."
+			noUpdate:"No changes to update. Please modify at least one field.",
+			unableToConnectWithDatabase: "Unable to connect to the database. Please try again later.",
+			updateWentWrong:"Something went wrong with updating user"
 		}
 	},
 } satisfies Record<string, unknown>;

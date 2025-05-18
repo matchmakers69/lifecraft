@@ -3,7 +3,7 @@
 import { ReactNode } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { paths } from "@/constants";
+import { GRAVATAR_URL, paths } from "@/constants";
 import { Button } from "@/shared/components/ui";
 import { useSessionWithUpdate } from "@/domains/authentication/hooks";
 import { NavbarLogoutButton } from "@/domains/authentication/components/ui";
@@ -16,7 +16,7 @@ const HeaderAuth = () => {
 
 	if (session && session?.user) {
 		const userName = session?.user.name ?? "Username";
-		const avatarSrc = session?.user.image ?? "/icons/avatar.svg";
+		const avatarSrc = session?.user.image ?? GRAVATAR_URL;
 
 		authContent = (
 			<div className="flex items-center gap-6">

@@ -1,28 +1,23 @@
+import { ACCEPTED_IMAGE_TYPES, MAX_FILE_SIZE } from "@/constants";
 import { z } from "zod";
 
-export const updateAvatarSchema = z
-  .object({
-      image: z.string().nullish().optional(),
-      avatar: z.union([
-        z.instanceof(File, {message: "Image is required"})
-         .refine(file => !file || file.size !== 0 || file.size <= 5000000, {message:"Max size exceeded"}),
-        z.string().optional() // to hold default image
-      ])
-      .refine(value => value instanceof File || typeof value === "string", {
-        message: "Image is required"
-      }).optional(),
-    // avatar: z
-    //   .any()
-    //   .refine(
-    //     (file) => {
-    //       if (!file) return true; // optional
-    //       return file instanceof File && file.size < 5 * 1024 * 1024; // under 5MB
-    //     },
-    //     {
-    //       message: "Avatar must be an image file under 5MB",
-    //     },
-    //   )
-    //   .optional(),
-  })
+export const updateAvatarSchema = z.object({
+	image: z
+		.union([
+			z
+				.instanceof(File)
+				.refine((file) => !file || file.size !== 0 || file.size <= MAX_FILE_SIZE, `Max image size is ${MAX_FILE_SIZE}MB`)
+				.refine(
+					(file) => !file || file.type === "" || ACCEPTED_IMAGE_TYPES.includes(file.type),
+					"Only .jpg, .jpeg, and .png formats are supported",
+				),
+			z.string(),
+			z.undefined(), // allow undefined explicitly
+		])
+		.refine((value) => value instanceof File || typeof value === "string", {
+			message: "Image is required",
+		})
+		.optional(),
+});
 
 export type UpdateAvatarValues = z.infer<typeof updateAvatarSchema>;

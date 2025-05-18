@@ -3,7 +3,6 @@ import { SxProps } from "@mui/material";
 import { TextFieldProps } from "@mui/material/TextField";
 import { TextField } from "@mui/material";
 import { getDefaultSx } from "@/shared/muiStyles";
-import { MUIFormLabel } from "./MUIFormLabel";
 
 export type MUIFileInputProps = {
 	id?: string;
@@ -14,8 +13,8 @@ export type MUIFileInputProps = {
 	sx?: SxProps;
 	["data-testid"]?: string;
 	["aria-label"]?: string;
-	accept: string;
-	onFileChange?: (_file: File | null) => void;
+	accept?: string;
+	onFileChange?: (file: File | null) => void;
 	value?: File | string | null;
 } & TextFieldProps;
 
@@ -38,9 +37,15 @@ const MUIFileInput = forwardRef<HTMLInputElement, MUIFileInputProps>(
 	) => {
 		const mergedSx = { ...getDefaultSx(), ...sx };
 
+		// Wrapper handler to trigger both events
+		const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+			const file = e.target.files?.[0] ?? null;
+			if (onFileChange) onFileChange(file); // simplified event
+			if (onChange) onChange(e); // original event
+		};
+
 		return (
 			<>
-				{label && <MUIFormLabel htmlFor={id} label={label} optionalText={""} />}
 				<TextField
 					ref={ref}
 					data-testid={dataTestid}
@@ -49,18 +54,40 @@ const MUIFileInput = forwardRef<HTMLInputElement, MUIFileInputProps>(
 					label={label}
 					name={name}
 					variant={variant}
-					sx={mergedSx}
+					sx={{
+						...mergedSx,
+						"& .MuiInputBase-root": {
+							cursor: "pointer",
+							backgroundColor: "transparent",
+							display: "none",
+						},
+						"& .MuiOutlinedInput-root": {
+							borderRadius: "0",
+							backgroundColor: "transparent",
+							padding: 0,
+							display: "none",
+							"& fieldset": {
+								border: "none",
+							},
+							"&:hover fieldset": {
+								border: "none",
+							},
+							"&.Mui-focused fieldset": {
+								background: "none",
+								outline: 0,
+							},
+						},
+						'& input[type="file"]': {
+							cursor: "pointer",
+						},
+					}}
 					type="file"
 					slotProps={{
 						htmlInput: {
 							accept,
-							onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
-								const file = e.target.files?.[0] ?? null;
-								if (onFileChange) onFileChange(file);
-								if (onChange) onChange(e);
-							},
 						},
 					}}
+					onChange={handleInputChange}
 					{...props}
 				/>
 			</>

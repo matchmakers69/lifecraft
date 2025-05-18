@@ -83,6 +83,7 @@ export const {
 			if (session.user) {
 				session.user.name = token.name ?? "";
 				session.user.email = token.email ?? "";
+				session.user.image = typeof token.image === "string" ? token.image : "";
 				session.user.role = token?.role as UserRole;
 				session.user.is0Auth = token.is0Auth as boolean;
 				session.user.id = token.id as string;
@@ -99,6 +100,7 @@ export const {
 			// We need to update session when we update name, email, etc
 			token.name = existingUser.name;
 			token.email = existingUser.email;
+			token.image = existingUser.image;
 			token.role = existingUser.role;
 			token.isTwoFactorEnabled = existingUser.isTwoFactorEnabled;
 			token.id = existingUser.id;
