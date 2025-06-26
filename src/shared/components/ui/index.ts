@@ -10,3 +10,4 @@ export { MUITextField } from "./MUITextField";
 export { MUIFileInput } from "./MUIFileInput";
 export { Checkbox } from "./Checkbox";
 export { FileUploadLabel } from "./FileUploadLabel";
+export { default as SelectField} from "./SelectField";

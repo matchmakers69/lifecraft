@@ -8,6 +8,7 @@ import {
 	SessionProvider,
 	ThemeRegistryProvider,
 	ToasterProvider,
+	CurrenciesProvider,
 } from "@/shared/components/providers";
 
 export const metadata: Metadata = {
@@ -44,7 +45,9 @@ export default async function RootLayout({
 					<ThemeRegistryProvider>
 						<ToasterProvider />
 						<ProgressBarProvider>
-							<LocalizationProvider>{children}</LocalizationProvider>
+							<LocalizationProvider>
+								<CurrenciesProvider>{children}</CurrenciesProvider>
+							</LocalizationProvider>
 						</ProgressBarProvider>
 					</ThemeRegistryProvider>
 				</SessionProvider>

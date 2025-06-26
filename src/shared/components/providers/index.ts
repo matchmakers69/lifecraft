@@ -3,3 +3,4 @@ export { ToasterProvider } from "./ToasterProvider";
 export { ProgressBarProvider } from "./ProgressBarProvider";
 export { SessionProvider } from "./SessionProvider";
 export { LocalizationProvider } from "./LocalizationProvider";
+export { default as CurrenciesProvider } from "./CurrenciesProvider";
