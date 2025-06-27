@@ -1,15 +1,16 @@
 "use client";
 
 import CurrencySelector from "@/domains/currencyConvertor/components/CurrencySelector";
-import { Loader2 } from "lucide-react";
 import { useCurrencyConvertor } from "@/domains/currencyConvertor/context/useCurrencyConvertor";
 import { CardDarkWrapper, CardTitle } from "@/shared/components/cards";
+import { useFetchCurrencies } from "@/shared/hooks/useFetchCurrenciesQuery";
+import { Loader2 } from "lucide-react";
 
 function SettingsCurrencyPicker() {
-	const { baseCurrency, currency, loadingCurrencies, dispatch } = useCurrencyConvertor();
+	const { baseCurrency, dispatch } = useCurrencyConvertor();
+	const { data: currencyData, isError, isLoading } = useFetchCurrencies();
 
 	const defaultCurrency = baseCurrency ?? "GBP";
-	const currencies = currency?.data;
 
 	const handleSelectBaseCurrency = (currency: string | number) => {
 		dispatch({
@@ -18,8 +19,12 @@ function SettingsCurrencyPicker() {
 		});
 	};
 
-	if (loadingCurrencies === "pending" || !currencies) {
+	if (isLoading) {
 		return <Loader2 size={30} className="mx-auto my-10 animate-spin" />;
+	}
+
+	if (isError) {
+		return <h4>{"Error occured, service is not available"}</h4>;
 	}
 	return (
 		<CardDarkWrapper>
@@ -29,11 +34,13 @@ function SettingsCurrencyPicker() {
 			>
 				Select the currncy you want to use
 			</CardTitle>
-			<CurrencySelector
-				selectedCurrency={baseCurrency}
-				currencies={currencies}
-				onSelectCurrency={handleSelectBaseCurrency}
-			/>
+			{currencyData && (
+				<CurrencySelector
+					selectedCurrency={baseCurrency}
+					currencies={currencyData}
+					onSelectCurrency={handleSelectBaseCurrency}
+				/>
+			)}
 		</CardDarkWrapper>
 	);
 }

@@ -9,6 +9,7 @@ import {
 	ThemeRegistryProvider,
 	ToasterProvider,
 	CurrenciesProvider,
+	ReactQueryProvider,
 } from "@/shared/components/providers";
 
 export const metadata: Metadata = {
@@ -45,9 +46,11 @@ export default async function RootLayout({
 					<ThemeRegistryProvider>
 						<ToasterProvider />
 						<ProgressBarProvider>
-							<LocalizationProvider>
-								<CurrenciesProvider>{children}</CurrenciesProvider>
-							</LocalizationProvider>
+							<ReactQueryProvider>
+								<LocalizationProvider>
+									<CurrenciesProvider>{children}</CurrenciesProvider>
+								</LocalizationProvider>
+							</ReactQueryProvider>
 						</ProgressBarProvider>
 					</ThemeRegistryProvider>
 				</SessionProvider>

@@ -1,4 +1,4 @@
-export type HealthGoal = {
+export type ExpenseCategory = {
     id: string;
     label: string;
 }

@@ -6,7 +6,8 @@ import { db } from "@/db";
 import { getUserByEmail } from "@/domains/user/services";
 import { registerSchema } from "@/domains/authentication/validationSchemas";
 import { t } from "@/shared/locales";
-import { isError } from "@/utils";
+import { isError } from "@/shared/types";
+
 
 type SignUpUserFormState = {
 	errors?: {

@@ -7,7 +7,7 @@
 		"postinstall": "prisma generate",
 		"build": "next build",
 		"start": "next start",
-		"lint": "next lint --fix",
+		"lint": "next lint && prettier --write './{src,app,components,pages}/**/*.{js,ts,tsx}' --loglevel warn",
 		"format": "prettier --write ."
 	},
 	"prisma": {
@@ -66,6 +66,8 @@
 		"prettier-plugin-tailwindcss": "^0.6.11",
 		"prisma": "^6.7.0",
 		"tailwindcss": "^4",
-		"typescript": "^5"
+		"ts-node": "^10.9.2",
+		"tsconfig-paths": "^4.2.0",
+		"typescript": "^5.8.3"
 	}
 }

@@ -47,6 +47,7 @@ model User {
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
   userCurrency          UserCurrency?
+  FinanceTransaction    FinanceTransaction[]
 }
 
 model Account {
@@ -109,4 +110,82 @@ model TwoFactorConfirmation {
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@unique([userId])
+}
+
+// FINANCE TRACKER
+enum INCOME_CATEGORY_LABEL {
+  SALARY
+  BONUSES
+  REFUNDS
+  GIFTS
+  INVESTMENTS
+  LOTTERY
+  OTHER
+}
+
+enum EXPENSE_CATEGORY_LABEL {
+  HOUSING
+  HOBBY
+  HOLIDAYS
+  FOOD
+  INSURANCES
+  FITNESS
+  EDUCATION
+  TRANSPORT
+  ENTERTAINMENT
+  OTHER
+}
+
+model IncomeCategory {
+  id    String                 @id @default(uuid())
+  label INCOME_CATEGORY_LABEL?
+}
+
+model ExpenseCategory {
+  id    String                  @id @default(uuid())
+  label EXPENSE_CATEGORY_LABEL?
+}
+
+model FinanceCategory {
+  createdAt DateTime @default(now())
+  name      String
+  userId    String
+  type      String   @default("income")
+
+  @@unique([name, userId, type])
+}
+
+model FinanceTransaction {
+  id          String    @id @default(cuid())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @default(now())
+  amount      Float
+  description String
+  date        DateTime
+  type        String    @default("income")
+  category    String
+  currency    CURRENCY? @default(GBP)
+  ownerId     String
+  owner       User      @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+}
+
+model MonthHistory {
+  userId  String
+  day     Int
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+
+  @@id([day, month, year, userId])
+}
+
+model YearHistory {
+  userId  String
+  month   Int
+  year    Int
+  income  Float
+  expense Float
+
+  @@id([month, year, userId])
 }
